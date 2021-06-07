@@ -21,6 +21,10 @@
 import Route from '@ioc:Adonis/Core/Route'
 import User from 'App/Models/User'
 
-Route.get('/', async () => {
-  return await User.all()
+Route.get('/user_one', async () => {
+  return await User.query().preload('games').where('steam_id', '76561199062731078').firstOrFail()
+})
+
+Route.get('/user_two', async () => {
+  return await User.query().preload('games').where('steam_id', '7000000000001').firstOrFail()
 })

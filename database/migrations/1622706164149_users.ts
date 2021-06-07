@@ -5,8 +5,8 @@ export default class Users extends BaseSchema {
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id').primary()
-      table.bigInteger('steam64')
+      table.bigInteger('steam_id').primary()
+      table.string('username')
     })
   }
 

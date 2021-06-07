@@ -1,9 +1,13 @@
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
+import Game from './Game'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
-  public id: number
+  public steam_id: BigInt
 
   @column()
-  public steam64: BigInt
+  public username: string
+
+  @hasMany(() => Game, {localKey: 'steam_id', foreignKey: 'steam_id'})
+  public games: HasMany<typeof Game>
 }
